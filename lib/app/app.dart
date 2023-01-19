@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_movies_app/config/responsive/mobile_layout.dart';
-import 'package:responsive_movies_app/config/responsive/responsive_layout.dart';
-import 'package:responsive_movies_app/config/responsive/tablet_layout.dart';
+import 'package:responsive_movies_app/config/routes/app_routes.dart';
 import 'package:responsive_movies_app/core/utils/app_strings.dart';
 
 class ResponsiveMoviesApp extends StatelessWidget {
@@ -12,10 +10,7 @@ class ResponsiveMoviesApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: AppStrings.appName,
-      home: ResponsiveLayout(
-        mobileLayout: MobileLayout(),
-        tabletLayout: TabletLayout(),
-      ),
+      onGenerateRoute: AppRoutes.onGenerateRoute,
     );
   }
 }
