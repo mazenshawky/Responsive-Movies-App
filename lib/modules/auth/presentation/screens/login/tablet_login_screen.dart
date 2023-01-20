@@ -20,12 +20,14 @@ class TabletLoginScreen extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+            child: Column(
               children: const [
-                SizedBox(
-                  width: AppSize.s450,
-                  child: AuthForm(label: AppStrings.login),
+                Padding(
+                  padding: EdgeInsets.only(right: AppPadding.p16),
+                  child: SizedBox(
+                    width: AppSize.s450,
+                    child: AuthForm(label: AppStrings.login),
+                  ),
                 ),
               ],
             ),
