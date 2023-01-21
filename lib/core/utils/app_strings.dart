@@ -7,6 +7,8 @@ class AppStrings {
   static const String signup = 'SIGN UP';
   static const String signupCheck = 'Sign Up';
   static const String signinCheck = 'Sign In';
+  static const String invalidUsername = 'Username should be at least 3 chars';
+  static const String invalidPassword = 'Password should be at least 6 chars';
   static const String noAccount = "Don't have an Account ? ";
   static const String haveAnAccount = 'Already have an Account ? ';
   static const String serverFailure = 'Server Failure';

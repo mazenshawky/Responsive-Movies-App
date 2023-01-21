@@ -61,6 +61,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   int _getUsersNumber() => sharedPreferences.getInt(counterKey) ?? 0;
 
   bool _isUsernameUnique(int counter, AuthRequest authRequest) {
+    // first user in the database
     if (counter == 0) {
       return true;
     }

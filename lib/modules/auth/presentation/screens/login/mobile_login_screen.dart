@@ -6,7 +6,16 @@ import 'package:responsive_movies_app/modules/auth/presentation/screens/componen
 import 'package:responsive_movies_app/modules/auth/presentation/screens/components/auth_image.dart';
 
 class MobileLoginScreen extends StatelessWidget {
-  const MobileLoginScreen({super.key});
+  final TextEditingController loginUsernameController;
+  final TextEditingController loginPasswordController;
+  final GlobalKey<FormState> loginFormKey;
+
+  const MobileLoginScreen({
+    super.key,
+    required this.loginUsernameController,
+    required this.loginPasswordController,
+    required this.loginFormKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +29,18 @@ class MobileLoginScreen extends StatelessWidget {
               image: IconAssets.loginIcon,
             ),
             Row(
-              children: const [
-                Spacer(),
+              children: [
+                const Spacer(),
                 Expanded(
                   flex: AppSize.s8,
-                  child: AuthForm(label: AppStrings.login),
+                  child: AuthForm(
+                    label: AppStrings.login,
+                    usernameController: loginUsernameController,
+                    passwordController: loginPasswordController,
+                    formKey: loginFormKey,
+                  ),
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           ],

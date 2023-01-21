@@ -62,6 +62,11 @@ class LoginCubit extends Cubit<LoginState>
   }
 
   @override
+  changePasswordVisibility(bool state) => state
+      ? _passwordVisibilityStreamController.add(false)
+      : _passwordVisibilityStreamController.add(true);
+
+  @override
   login() async {
     emit(LoginLoading());
     Either<Failure, bool> response = await loginUseCase(
@@ -89,12 +94,18 @@ class LoginCubit extends Cubit<LoginState>
   Stream<bool> get outAreAllInputsValid =>
       _areAllInputsValidStreamController.stream
           .map((_) => Constants.areAllLoginInputsValid(loginObject));
+
+  @override
+  Stream<bool> get outIsPasswordVisible =>
+      _passwordVisibilityStreamController.stream.map((state) => state);
 }
 
 abstract class LoginCubitInputs {
   setUserName(String username);
 
   setPassword(String password);
+
+  changePasswordVisibility(bool state);
 
   login();
 
@@ -113,4 +124,6 @@ abstract class LoginCubitOutputs {
   Stream<bool> get outIsPasswordValid;
 
   Stream<bool> get outAreAllInputsValid;
+
+  Stream<bool> get outIsPasswordVisible;
 }
