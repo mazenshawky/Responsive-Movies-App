@@ -31,7 +31,9 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
       throw const UsernameAlreadyExistsException();
     }
 
-    return _addUser(counter, authRequest);
+    _addUser(counter, authRequest);
+
+    return _logUser(authRequest);
   }
 
   @override
@@ -51,7 +53,10 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
       sharedPreferences.getBool(isUserLoggedInKey) ?? false;
 
   @override
-  void logout() => sharedPreferences.remove(isUserLoggedInKey);
+  void logout() {
+    sharedPreferences.remove(isUserLoggedInKey);
+    sharedPreferences.remove(loggedUserUsernameKey);
+  }
 
   int _getUsersNumber() => sharedPreferences.getInt(counterKey) ?? 0;
 

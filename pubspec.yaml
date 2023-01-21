@@ -37,12 +37,14 @@ dependencies:
     sdk: flutter
   flutter_bloc: ^8.1.1
   flutter_svg: ^1.1.6
+  freezed: ^2.3.2
   get_it: ^7.2.0
   internet_connection_checker: ^1.0.0+1
   shared_preferences: ^2.0.16
 
 dev_dependencies:
   flutter_lints: ^2.0.0
+  build_runner: ^2.2.1
   flutter_test:
     sdk: flutter
 
