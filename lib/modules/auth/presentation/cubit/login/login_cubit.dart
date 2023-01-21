@@ -28,9 +28,6 @@ class LoginCubit extends Cubit<LoginState>
   final StreamController _passwordVisibilityStreamController =
       StreamController<bool>.broadcast();
 
-  final StreamController isUserLoggedInSuccessfullyStreamController =
-      StreamController<bool>.broadcast();
-
   var loginObject = LoginObject("", "");
 
   // inputs
@@ -75,7 +72,6 @@ class LoginCubit extends Cubit<LoginState>
     emit(response.fold(
       (failure) => LoginError(msg: Constants.mapFailureToMsg(failure)),
       (loggedIn) {
-        isUserLoggedInSuccessfullyStreamController.add(true);
         return LoginSuccess();
       },
     ));

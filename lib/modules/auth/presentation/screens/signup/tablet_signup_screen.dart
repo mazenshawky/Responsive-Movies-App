@@ -9,12 +9,14 @@ class TabletSignUpScreen extends StatelessWidget {
   final TextEditingController signupUsernameController;
   final TextEditingController signupPasswordController;
   final GlobalKey<FormState> signupFormKey;
+  final Widget buildBloc;
 
   const TabletSignUpScreen({
     super.key,
     required this.signupUsernameController,
     required this.signupPasswordController,
     required this.signupFormKey,
+    required this.buildBloc,
   });
 
   @override
@@ -47,6 +49,7 @@ class TabletSignUpScreen extends StatelessWidget {
               ],
             ),
           ),
+          buildBloc,
         ],
       ),
     );

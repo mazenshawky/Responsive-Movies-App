@@ -16,4 +16,5 @@ class AppStrings {
   static const String usernameAlreadyExistsFailure = 'Username already exists';
   static const String userNotExistsFailure = 'Invalid username or password';
   static const String unexpectedError = 'Unexpected Error';
+  static const String tryAgain = 'Try Again';
 }

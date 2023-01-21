@@ -1,5 +1,6 @@
 const String imagePath = "assets/images";
 const String iconPath = "assets/icons";
+const String jsonPath = "assets/json";
 
 class ImageAssets {
   static const String loginTop = "$imagePath/login_top.png";
@@ -11,4 +12,9 @@ class ImageAssets {
 class IconAssets {
   static const String loginIcon = "$iconPath/login.svg";
   static const String signupIcon = "$iconPath/signup.svg";
+}
+
+class JsonAssets {
+  static const String loading = "$jsonPath/loading.json";
+  static const String error = "$jsonPath/error.json";
 }

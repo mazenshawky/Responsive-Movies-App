@@ -28,9 +28,6 @@ class SignUpCubit extends Cubit<SignUpState>
   final StreamController _passwordVisibilityStreamController =
       StreamController<bool>.broadcast();
 
-  final StreamController isUserSignedUpSuccessfullyStreamController =
-      StreamController<bool>.broadcast();
-
   var signUpObject = SignUpObject("", "");
 
   // inputs
@@ -75,7 +72,6 @@ class SignUpCubit extends Cubit<SignUpState>
     emit(response.fold(
       (failure) => SignUpError(msg: Constants.mapFailureToMsg(failure)),
       (signedUp) {
-        isUserSignedUpSuccessfullyStreamController.add(true);
         return SignUpSuccess();
       },
     ));

@@ -9,12 +9,14 @@ class MobileLoginScreen extends StatelessWidget {
   final TextEditingController loginUsernameController;
   final TextEditingController loginPasswordController;
   final GlobalKey<FormState> loginFormKey;
+  final Widget buildBloc;
 
   const MobileLoginScreen({
     super.key,
     required this.loginUsernameController,
     required this.loginPasswordController,
     required this.loginFormKey,
+    required this.buildBloc,
   });
 
   @override
@@ -43,6 +45,7 @@ class MobileLoginScreen extends StatelessWidget {
                 const Spacer(),
               ],
             ),
+            buildBloc,
           ],
         ),
       ),

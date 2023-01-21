@@ -1,5 +1,8 @@
+import 'package:flutter/material.dart';
 import 'package:responsive_movies_app/core/error/failure.dart';
+import 'package:responsive_movies_app/core/utils/app_colors.dart';
 import 'package:responsive_movies_app/core/utils/app_strings.dart';
+import 'package:responsive_movies_app/core/utils/app_values.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/common/freezed_data_classes.dart';
 
 class Constants {
@@ -28,5 +31,33 @@ class Constants {
       default:
         return AppStrings.unexpectedError;
     }
+  }
+
+  static void showPopupWidget(BuildContext context,
+      {required List<Widget> children}) {
+    Dialog dialog = Dialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSize.s14)),
+      elevation: AppSize.s1_5,
+      backgroundColor: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+            color: AppColors.primaryLightColor,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.circular(AppSize.s14),
+            boxShadow: const [BoxShadow(color: Colors.black26)]),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: children,
+        ),
+      ),
+    );
+
+    showDialog(
+      context: context,
+      builder: (context) => dialog,
+    );
   }
 }

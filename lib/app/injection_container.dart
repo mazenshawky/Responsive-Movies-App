@@ -14,8 +14,8 @@ final sl = GetIt.instance;
 Future<void> init() async {
   //! Modules
   // Blocs
-  sl.registerLazySingleton<LoginCubit>(() => LoginCubit(loginUseCase: sl()));
-  sl.registerLazySingleton<SignUpCubit>(() => SignUpCubit(signUpUseCase: sl()));
+  sl.registerFactory<LoginCubit>(() => LoginCubit(loginUseCase: sl()));
+  sl.registerFactory<SignUpCubit>(() => SignUpCubit(signUpUseCase: sl()));
 
   // Use Cases
   sl.registerLazySingleton<SignUpUseCase>(

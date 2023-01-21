@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_movies_app/config/responsive/responsive_layout.dart';
 import 'package:responsive_movies_app/config/routes/app_routes.dart';
 import 'package:responsive_movies_app/core/utils/app_assets.dart';
+import 'package:responsive_movies_app/core/utils/constants.dart';
+import 'package:responsive_movies_app/core/widgets/state_animation_image.dart';
+import 'package:responsive_movies_app/core/widgets/state_error_button.dart';
+import 'package:responsive_movies_app/core/widgets/state_error_text.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/cubit/signup/signup_cubit.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/components/auth_background.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/signup/mobile_signup_screen.dart';
@@ -23,6 +26,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       TextEditingController();
   final _signupFormKey = GlobalKey<FormState>();
 
+  @override
+  void initState() {
+    super.initState();
+    _bind();
+  }
+
   _bind() {
     _signupUsernameController.addListener(() =>
         BlocProvider.of<SignUpCubit>(context)
@@ -30,23 +39,38 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _signupPasswordController.addListener(() =>
         BlocProvider.of<SignUpCubit>(context)
             .setPassword(_signupPasswordController.text));
-
-    BlocProvider.of<SignUpCubit>(context)
-        .isUserSignedUpSuccessfullyStreamController
-        .stream
-        .listen((isSignedUp) {
-      if (isSignedUp) {
-        SchedulerBinding.instance.addPostFrameCallback((_) {
-          Navigator.of(context).pushReplacementNamed(Routes.dashboardRoute);
-        });
-      }
-    });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _bind();
+  Widget _buildSignupButtonPressedBloc() {
+    return BlocListener<SignUpCubit, SignUpState>(
+      listenWhen: ((previous, current) => previous != current),
+      listener: (context, state) {
+        if (state is SignUpLoading) {
+          Constants.showPopupWidget(
+            context,
+            children: [
+              const StateAnimationImage(animationImage: JsonAssets.loading),
+            ],
+          );
+        }
+        if (state is SignUpSuccess) {
+          Navigator.pop(context);
+          Navigator.of(context).pushReplacementNamed(Routes.dashboardRoute);
+        }
+        if (state is SignUpError) {
+          Navigator.pop(context);
+          Constants.showPopupWidget(
+            context,
+            children: [
+              const StateAnimationImage(animationImage: JsonAssets.error),
+              StateErrorText(text: (state).msg),
+              const StateErrorButton(),
+            ],
+          );
+        }
+      },
+      child: Container(),
+    );
   }
 
   @override
@@ -61,11 +85,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             signupUsernameController: _signupUsernameController,
             signupPasswordController: _signupPasswordController,
             signupFormKey: _signupFormKey,
+            buildBloc: _buildSignupButtonPressedBloc(),
           ),
           tabletLayout: TabletSignUpScreen(
             signupUsernameController: _signupUsernameController,
             signupPasswordController: _signupPasswordController,
             signupFormKey: _signupFormKey,
+            buildBloc: _buildSignupButtonPressedBloc(),
           ),
         ),
       ),
