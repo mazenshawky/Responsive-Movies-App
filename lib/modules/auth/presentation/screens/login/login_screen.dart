@@ -4,11 +4,11 @@ import 'package:responsive_movies_app/config/responsive/responsive_layout.dart';
 import 'package:responsive_movies_app/config/routes/app_routes.dart';
 import 'package:responsive_movies_app/core/utils/app_assets.dart';
 import 'package:responsive_movies_app/core/utils/constants.dart';
+import 'package:responsive_movies_app/core/widgets/background.dart';
 import 'package:responsive_movies_app/core/widgets/state_animation_image.dart';
 import 'package:responsive_movies_app/core/widgets/state_error_button.dart';
 import 'package:responsive_movies_app/core/widgets/state_error_text.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/cubit/login/login_cubit.dart';
-import 'package:responsive_movies_app/modules/auth/presentation/screens/components/auth_background.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/login/mobile_login_screen.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/login/tablet_login_screen.dart';
 
@@ -76,7 +76,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthBackground(
+      body: Background(
         topImage: ImageAssets.loginTop,
         bottomImage: ImageAssets.loginBottom,
         child: ResponsiveLayout(

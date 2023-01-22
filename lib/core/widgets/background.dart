@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:responsive_movies_app/core/utils/app_values.dart';
 import 'package:responsive_movies_app/core/utils/media_query_values.dart';
 
-class AuthBackground extends StatelessWidget {
-  final bool login;
+class Background extends StatelessWidget {
+  final bool isBottomRight;
   final Widget child;
   final String topImage;
   final String bottomImage;
 
-  const AuthBackground({
+  const Background({
     Key? key,
-    this.login = true,
+    this.isBottomRight = true,
     required this.child,
     required this.topImage,
     required this.bottomImage,
@@ -32,7 +32,7 @@ class AuthBackground extends StatelessWidget {
               width: AppSize.s120,
             ),
           ),
-          login
+          isBottomRight
               ? Positioned(
                   bottom: AppSize.s0,
                   right: AppSize.s0,

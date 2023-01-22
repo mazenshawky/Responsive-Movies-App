@@ -4,11 +4,11 @@ import 'package:responsive_movies_app/config/responsive/responsive_layout.dart';
 import 'package:responsive_movies_app/config/routes/app_routes.dart';
 import 'package:responsive_movies_app/core/utils/app_assets.dart';
 import 'package:responsive_movies_app/core/utils/constants.dart';
+import 'package:responsive_movies_app/core/widgets/background.dart';
 import 'package:responsive_movies_app/core/widgets/state_animation_image.dart';
 import 'package:responsive_movies_app/core/widgets/state_error_button.dart';
 import 'package:responsive_movies_app/core/widgets/state_error_text.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/cubit/signup/signup_cubit.dart';
-import 'package:responsive_movies_app/modules/auth/presentation/screens/components/auth_background.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/signup/mobile_signup_screen.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/signup/tablet_signup_screen.dart';
 
@@ -76,10 +76,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: AuthBackground(
+      body: Background(
         topImage: ImageAssets.signupTop,
         bottomImage: ImageAssets.signupBottom,
-        login: false,
+        isBottomRight: false,
         child: ResponsiveLayout(
           mobileLayout: MobileSignUpScreen(
             signupUsernameController: _signupUsernameController,
