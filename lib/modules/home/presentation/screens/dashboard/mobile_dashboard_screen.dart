@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:responsive_movies_app/app/app_prefs.dart';
 import 'package:responsive_movies_app/config/routes/app_routes.dart';
-import 'package:responsive_movies_app/modules/auth/data/datasources/auth_local_data_source.dart';
 
 class MobileDashboardScreen extends StatelessWidget {
-  final AuthLocalDataSource authLocalDataSource;
+  final AppPreferences appPreferences;
 
-  const MobileDashboardScreen({super.key, required this.authLocalDataSource});
+  const MobileDashboardScreen({super.key, required this.appPreferences});
 
   void _logout(BuildContext context) {
-    authLocalDataSource.logout();
+    appPreferences.logout();
     Navigator.pushReplacementNamed(context, Routes.loginRoute);
   }
 

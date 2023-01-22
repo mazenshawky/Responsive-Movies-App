@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:responsive_movies_app/app/app_prefs.dart';
 import 'package:responsive_movies_app/app/bloc_observer.dart';
 import 'package:responsive_movies_app/modules/auth/data/datasources/auth_local_data_source.dart';
 import 'package:responsive_movies_app/modules/auth/data/repository/auth_repository_impl.dart';
@@ -34,5 +35,6 @@ Future<void> init() async {
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
+  sl.registerLazySingleton((() => AppPreferences(sharedPreferences: sl())));
   sl.registerLazySingleton(() => AppBlocObserver());
 }

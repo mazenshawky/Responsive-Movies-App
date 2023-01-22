@@ -1,11 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:responsive_movies_app/app/app_prefs.dart';
 import 'package:responsive_movies_app/config/routes/app_routes.dart';
 import 'package:responsive_movies_app/core/utils/app_colors.dart';
 import 'package:responsive_movies_app/core/utils/app_values.dart';
 import 'package:responsive_movies_app/core/utils/media_query_values.dart';
-import 'package:responsive_movies_app/modules/auth/data/datasources/auth_local_data_source.dart';
 import 'package:responsive_movies_app/app/injection_container.dart' as di;
 
 class SplashScreen extends StatefulWidget {
@@ -17,7 +17,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   late Timer _timer;
-  final AuthLocalDataSource _authLocalDataSource = di.sl<AuthLocalDataSource>();
+  final AppPreferences _appPreferences = di.sl<AppPreferences>();
 
   @override
   void initState() {
@@ -26,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _goNext() async {
-    _authLocalDataSource.getIsUserLoggedIn().then(
+    _appPreferences.getIsUserLoggedIn().then(
           (isUserLoggedIn) => {
             if (isUserLoggedIn)
               {Navigator.pushReplacementNamed(context, Routes.dashboardRoute)}

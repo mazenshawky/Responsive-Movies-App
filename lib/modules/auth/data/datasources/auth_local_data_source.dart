@@ -1,20 +1,12 @@
 import 'package:responsive_movies_app/core/error/cache_exceptions.dart';
 import 'package:responsive_movies_app/core/local/requests.dart';
+import 'package:responsive_movies_app/core/utils/app_strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-const userKey = "USER_KEY_";
-const counterKey = "COUNTER_KEY";
-const isUserLoggedInKey = "IS_USER_LOGGED_IN_KEY";
-const loggedUserUsernameKey = "LOGGED_USER_USERNAME_KEY";
 
 abstract class AuthLocalDataSource {
   Future<bool> signup({required AuthRequest authRequest});
 
   Future<bool> login({required AuthRequest authRequest});
-
-  Future<bool> getIsUserLoggedIn();
-
-  void logout();
 }
 
 class AuthLocalDataSourceImpl implements AuthLocalDataSource {
@@ -48,17 +40,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return _logUser(authRequest);
   }
 
-  @override
-  Future<bool> getIsUserLoggedIn() async =>
-      sharedPreferences.getBool(isUserLoggedInKey) ?? false;
-
-  @override
-  void logout() {
-    sharedPreferences.remove(isUserLoggedInKey);
-    sharedPreferences.remove(loggedUserUsernameKey);
-  }
-
-  int _getUsersNumber() => sharedPreferences.getInt(counterKey) ?? 0;
+  int _getUsersNumber() => sharedPreferences.getInt(AppStrings.counterKey) ?? 0;
 
   bool _isUsernameUnique(int counter, AuthRequest authRequest) {
     // first user in the database
@@ -67,7 +49,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     }
 
     for (var i = 1; i <= counter; i++) {
-      List<String>? user = sharedPreferences.getStringList('$userKey$i');
+      List<String>? user =
+          sharedPreferences.getStringList('${AppStrings.userKey}$i');
       if (user![0] == authRequest.username) {
         return false;
       }
@@ -79,15 +62,17 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future<bool> _addUser(int counter, AuthRequest authRequest) async {
     counter++;
 
-    await sharedPreferences.setInt(counterKey, counter);
+    await sharedPreferences.setInt(AppStrings.counterKey, counter);
 
-    return await sharedPreferences.setStringList('$userKey$counter',
+    return await sharedPreferences.setStringList(
+        '${AppStrings.userKey}$counter',
         <String>[authRequest.username, authRequest.password]);
   }
 
   bool _isUserValid(int counter, AuthRequest authRequest) {
     for (var i = 1; i <= counter; i++) {
-      List<String>? user = sharedPreferences.getStringList('$userKey$i');
+      List<String>? user =
+          sharedPreferences.getStringList('${AppStrings.userKey}$i');
       if (user![0] == authRequest.username && user[1] == authRequest.password) {
         return true;
       }
@@ -97,9 +82,9 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }
 
   Future<bool> _logUser(AuthRequest authRequest) async {
-    await sharedPreferences.setBool(isUserLoggedInKey, true);
+    await sharedPreferences.setBool(AppStrings.isUserLoggedInKey, true);
 
     return await sharedPreferences.setString(
-        loggedUserUsernameKey, authRequest.username);
+        AppStrings.loggedUserUsernameKey, authRequest.username);
   }
 }

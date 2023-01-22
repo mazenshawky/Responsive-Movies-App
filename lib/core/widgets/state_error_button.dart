@@ -10,9 +10,12 @@ class StateErrorButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(
           horizontal: AppPadding.p90, vertical: AppPadding.p15),
-      child: ElevatedButton(
-          onPressed: () => Navigator.of(context).pop(),
-          child: const Text(AppStrings.tryAgain)),
+      child: SizedBox(
+        width: AppSize.s450,
+        child: ElevatedButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text(AppStrings.tryAgain)),
+      ),
     );
   }
 }
