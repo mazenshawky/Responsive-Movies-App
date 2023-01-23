@@ -24,6 +24,7 @@ class AppStrings {
   static const String counterKey = "COUNTER_KEY";
   static const String isUserLoggedInKey = "IS_USER_LOGGED_IN_KEY";
   static const String loggedUserUsernameKey = "LOGGED_USER_USERNAME_KEY";
+  static const String cachedMovies = "CACHED_MOVIES";
 
   static const String contentType = 'Content-Type';
   static const String applicationJson = 'application/json';
