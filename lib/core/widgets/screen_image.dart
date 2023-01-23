@@ -3,11 +3,11 @@ import 'package:flutter_svg/svg.dart';
 import 'package:responsive_movies_app/core/utils/app_values.dart';
 import 'package:responsive_movies_app/core/utils/media_query_values.dart';
 
-class AuthImage extends StatelessWidget {
+class ScreenImage extends StatelessWidget {
   final String title;
   final String image;
 
-  const AuthImage({
+  const ScreenImage({
     Key? key,
     required this.title,
     required this.image,

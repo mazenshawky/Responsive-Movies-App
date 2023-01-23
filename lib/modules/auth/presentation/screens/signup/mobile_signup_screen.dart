@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:responsive_movies_app/core/utils/app_assets.dart';
 import 'package:responsive_movies_app/core/utils/app_strings.dart';
 import 'package:responsive_movies_app/core/utils/app_values.dart';
+import 'package:responsive_movies_app/core/widgets/screen_image.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/components/auth_form.dart';
-import 'package:responsive_movies_app/modules/auth/presentation/screens/components/auth_image.dart';
 
 class MobileSignUpScreen extends StatelessWidget {
   final TextEditingController signupUsernameController;
@@ -26,7 +26,7 @@ class MobileSignUpScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const AuthImage(
+            const ScreenImage(
               title: AppStrings.signup,
               image: IconAssets.signupIcon,
             ),

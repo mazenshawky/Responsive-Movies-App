@@ -1,27 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:responsive_movies_app/app/app_prefs.dart';
-import 'package:responsive_movies_app/config/routes/app_routes.dart';
-import 'package:responsive_movies_app/core/utils/app_colors.dart';
-import 'package:responsive_movies_app/core/utils/app_strings.dart';
+import 'package:responsive_movies_app/core/utils/app_assets.dart';
+import 'package:responsive_movies_app/core/widgets/screen_image.dart';
+import 'package:responsive_movies_app/modules/home/presentation/screens/components/navigate_and_logout_buttons.dart';
 
 class MobileDashboardScreen extends StatelessWidget {
-  final AppPreferences appPreferences;
+  final String helloMessage;
+  final VoidCallback? logout;
 
-  const MobileDashboardScreen({super.key, required this.appPreferences});
-
-  void _logout(BuildContext context) {
-    appPreferences.logout();
-    Navigator.pushReplacementNamed(context, Routes.loginRoute);
-  }
+  const MobileDashboardScreen({
+    super.key,
+    required this.logout,
+    required this.helloMessage,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.primaryLightColor,
-      body: Center(
-        child: ElevatedButton(
-            onPressed: () => _logout(context),
-            child: const Text(AppStrings.logout)),
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ScreenImage(
+            title: helloMessage,
+            image: IconAssets.dashboardIcon,
+          ),
+          Row(
+            children: [
+              const Spacer(),
+              Expanded(
+                flex: 8,
+                child: NavigateAndLogoutButtons(
+                  logout: logout,
+                ),
+              ),
+              const Spacer(),
+            ],
+          ),
+        ],
       ),
     );
   }

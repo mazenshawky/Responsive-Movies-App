@@ -46,11 +46,13 @@ class Constants {
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(AppSize.s14),
             boxShadow: const [BoxShadow(color: Colors.black26)]),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: children,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: children,
+          ),
         ),
       ),
     );
@@ -60,4 +62,10 @@ class Constants {
       builder: (context) => dialog,
     );
   }
+
+  static String adjustName(String name) =>
+      "${name[0].toUpperCase()}${name.substring(1).toLowerCase()}";
+
+  static String appendSomeTextToName(String name) =>
+      "Hello, ${adjustName(name)}!";
 }

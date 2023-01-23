@@ -8,6 +8,7 @@ import 'package:responsive_movies_app/modules/auth/domain/usecases/login_usecase
 import 'package:responsive_movies_app/modules/auth/domain/usecases/signup_usecase.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/cubit/login/login_cubit.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/cubit/signup/signup_cubit.dart';
+import 'package:responsive_movies_app/modules/home/presentation/cubit/dashboard/dashboard_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final sl = GetIt.instance;
@@ -17,6 +18,8 @@ Future<void> init() async {
   // Blocs
   sl.registerFactory<LoginCubit>(() => LoginCubit(loginUseCase: sl()));
   sl.registerFactory<SignUpCubit>(() => SignUpCubit(signUpUseCase: sl()));
+  sl.registerFactory<DashboardCubit>(
+      () => DashboardCubit(appPreferences: sl()));
 
   // Use Cases
   sl.registerLazySingleton<SignUpUseCase>(

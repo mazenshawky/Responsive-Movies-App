@@ -17,6 +17,7 @@ class AppStrings {
   static const String userNotExistsFailure = 'Invalid username or password';
   static const String unexpectedError = 'Unexpected Error';
   static const String tryAgain = 'Try Again';
+  static const String goToMovies = 'Go To Movies';
   static const String logout = 'Logout';
 
   static const String userKey = "USER_KEY_";
