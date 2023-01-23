@@ -6,6 +6,7 @@ import 'package:responsive_movies_app/modules/auth/presentation/cubit/signup/sig
 import 'package:responsive_movies_app/modules/auth/presentation/screens/login/login_screen.dart';
 import 'package:responsive_movies_app/modules/auth/presentation/screens/signup/signup_screen.dart';
 import 'package:responsive_movies_app/modules/home/presentation/cubit/dashboard/dashboard_cubit.dart';
+import 'package:responsive_movies_app/modules/home/presentation/cubit/movies/movies_cubit.dart';
 import 'package:responsive_movies_app/modules/home/presentation/screens/dashboard/dashboard_screen.dart';
 import 'package:responsive_movies_app/modules/home/presentation/screens/movies/movies_screen.dart';
 import 'package:responsive_movies_app/modules/splash/presentation/screens/splash/splash_screen.dart';
@@ -47,7 +48,11 @@ class AppRoutes {
         );
 
       case Routes.moviesRoute:
-        return MaterialPageRoute(builder: (context) => const MoviesScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+              create: (context) => di.sl<MoviesCubit>(),
+              child: const MoviesScreen()),
+        );
 
       default:
         return undefinedRoute();

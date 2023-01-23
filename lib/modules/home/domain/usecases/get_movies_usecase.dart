@@ -7,7 +7,7 @@ import 'package:responsive_movies_app/modules/home/domain/repository/movies_repo
 class GetMoviesUseCase implements BaseUseCase<List<Movie>, NoParameters> {
   final MoviesRepository moviesRepository;
 
-  GetMoviesUseCase(this.moviesRepository);
+  GetMoviesUseCase({required this.moviesRepository});
 
   @override
   Future<Either<Failure, List<Movie>>> call(NoParameters parametersa) async {
