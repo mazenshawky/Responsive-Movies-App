@@ -17,14 +17,14 @@ class MoviesLocalDataSourceImpl implements MoviesLocalDataSource {
 
   @override
   Future<List<MovieModel>> getLastMovies() {
-    final jsonString = sharedPreferences.getString(AppStrings.cachedMovies);
+    final jsonMovies =
+        sharedPreferences.getStringList(AppStrings.cachedMoviesKey);
 
-    if (jsonString != null) {
-      final cacheMovies = Future.value(List<MovieModel>.from(
-          (jsonString as List).map((jsonTitle) =>
-              Future.value(MovieModel.fromJson(json.decode(jsonTitle))))));
+    if (jsonMovies != null) {
+      final cachedMovies = Future.value(List<MovieModel>.from((jsonMovies)
+          .map((jsonMovie) => MovieModel.fromJson(json.decode(jsonMovie)))));
 
-      return cacheMovies;
+      return cachedMovies;
     } else {
       throw const CacheException();
     }
@@ -32,7 +32,11 @@ class MoviesLocalDataSourceImpl implements MoviesLocalDataSource {
 
   @override
   Future<void> cacheMovies(List<MovieModel> movies) {
-    return sharedPreferences.setString(
-        AppStrings.cachedMovies, json.encode(movies));
+    final List<String> jsonMovies = [];
+    for (var movie in movies) {
+      jsonMovies.add(json.encode(movie));
+    }
+    return sharedPreferences.setStringList(
+        AppStrings.cachedMoviesKey, jsonMovies);
   }
 }

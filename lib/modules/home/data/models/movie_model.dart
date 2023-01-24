@@ -12,4 +12,10 @@ class MovieModel extends Movie {
         title: json["title"],
         backdropPath: json["backdrop_path"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "title": title,
+        "backdrop_path": backdropPath,
+      };
 }

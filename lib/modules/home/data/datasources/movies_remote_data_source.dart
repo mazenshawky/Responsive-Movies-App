@@ -16,7 +16,7 @@ class MoviesRemoteDataSourceImpl implements MoviesRemoteDataSource {
     final response = await apiConsumer.get(
       EndPoints.moviesPath,
     );
-    return List<MovieModel>.from(
-        (response.data["results"] as List).map((e) => MovieModel.fromJson(e)));
+    return List<MovieModel>.from((response["results"] as List)
+        .map((movie) => MovieModel.fromJson(movie)));
   }
 }
