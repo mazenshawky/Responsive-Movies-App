@@ -84,8 +84,8 @@ class AuthForm extends StatelessWidget {
                       ),
                       suffixIcon: Padding(
                         padding: const EdgeInsets.only(right: AppPadding.p8),
-                        child: IconButton(
-                          onPressed: () {
+                        child: GestureDetector(
+                          onTap: () {
                             isLoginScreen
                                 ? BlocProvider.of<LoginCubit>(context)
                                     .changePasswordVisibility(
@@ -94,10 +94,24 @@ class AuthForm extends StatelessWidget {
                                     .changePasswordVisibility(
                                         (visibleSnapshot.data ?? true));
                           },
-                          icon: (visibleSnapshot.data ?? true)
+                          child: (visibleSnapshot.data ?? true)
                               ? const Icon(Icons.visibility_outlined)
                               : const Icon(Icons.visibility_off_outlined),
                         ),
+                        // child: IconButton(
+                        //   onPressed: () {
+                        //     isLoginScreen
+                        //         ? BlocProvider.of<LoginCubit>(context)
+                        //             .changePasswordVisibility(
+                        //                 (visibleSnapshot.data ?? true))
+                        //         : BlocProvider.of<SignUpCubit>(context)
+                        //             .changePasswordVisibility(
+                        //                 (visibleSnapshot.data ?? true));
+                        //   },
+                        // icon: (visibleSnapshot.data ?? true)
+                        //     ? const Icon(Icons.visibility_outlined)
+                        //     : const Icon(Icons.visibility_off_outlined),
+                        // ),
                       ),
                       errorText: (snapshot.data ?? true)
                           ? null
