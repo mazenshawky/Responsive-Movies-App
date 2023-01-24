@@ -98,20 +98,6 @@ class AuthForm extends StatelessWidget {
                               ? const Icon(Icons.visibility_outlined)
                               : const Icon(Icons.visibility_off_outlined),
                         ),
-                        // child: IconButton(
-                        //   onPressed: () {
-                        //     isLoginScreen
-                        //         ? BlocProvider.of<LoginCubit>(context)
-                        //             .changePasswordVisibility(
-                        //                 (visibleSnapshot.data ?? true))
-                        //         : BlocProvider.of<SignUpCubit>(context)
-                        //             .changePasswordVisibility(
-                        //                 (visibleSnapshot.data ?? true));
-                        //   },
-                        // icon: (visibleSnapshot.data ?? true)
-                        //     ? const Icon(Icons.visibility_outlined)
-                        //     : const Icon(Icons.visibility_off_outlined),
-                        // ),
                       ),
                       errorText: (snapshot.data ?? true)
                           ? null
