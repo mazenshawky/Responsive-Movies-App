@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_movies_app/core/utils/app_assets.dart';
+import 'package:responsive_movies_app/core/utils/app_values.dart';
 import 'package:responsive_movies_app/core/widgets/screen_image.dart';
 import 'package:responsive_movies_app/modules/home/presentation/screens/components/navigate_and_logout_buttons.dart';
 
@@ -27,7 +28,7 @@ class MobileDashboardScreen extends StatelessWidget {
             children: [
               const Spacer(),
               Expanded(
-                flex: 8,
+                flex: AppSize.s8,
                 child: NavigateAndLogoutButtons(
                   logout: logout,
                 ),

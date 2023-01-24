@@ -58,7 +58,7 @@ class _MoviesScreenState extends State<MoviesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryLightColor,
-      body: _buildBodyContent(),
+      body: SafeArea(child: _buildBodyContent()),
     );
   }
 }

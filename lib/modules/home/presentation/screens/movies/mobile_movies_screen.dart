@@ -11,19 +11,23 @@ class MobileMoviesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          GridView.count(
-            shrinkWrap: true,
-            crossAxisCount: 2,
-            childAspectRatio: AppSize.s1 / AppSize.s1_3_5,
-            physics: const NeverScrollableScrollPhysics(),
-            children: List.generate(
-              movies.length,
-              (index) => MovieItem(movie: movies[index]),
+      child: Padding(
+        padding: const EdgeInsets.only(
+            left: AppPadding.p10, right: AppPadding.p10, top: AppPadding.p10),
+        child: Column(
+          children: [
+            GridView.count(
+              shrinkWrap: true,
+              crossAxisCount: 2,
+              childAspectRatio: AppSize.s1 / AppSize.s1_3_5,
+              physics: const NeverScrollableScrollPhysics(),
+              children: List.generate(
+                movies.length,
+                (index) => MovieItem(movie: movies[index]),
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -66,7 +66,8 @@ Future<void> init() async {
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton((() => AppPreferences(sharedPreferences: sl())));
+  sl.registerLazySingleton<AppPreferences>(
+      (() => AppPreferencesImpl(sharedPreferences: sl())));
   sl.registerLazySingleton(() => AppInterceptors());
   sl.registerLazySingleton(() => LogInterceptor(
       request: true,
