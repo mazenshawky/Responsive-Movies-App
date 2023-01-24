@@ -5,6 +5,7 @@ import 'package:responsive_movies_app/core/utils/app_values.dart';
 ThemeData appTheme() {
   return ThemeData(
     primaryColor: AppColors.primaryColor,
+    splashColor: AppColors.primaryColor,
     scaffoldBackgroundColor: Colors.white,
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
